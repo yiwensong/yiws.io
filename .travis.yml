@@ -12,10 +12,11 @@ script:
   - flutter build web
 deploy:
   provider: gcs
+  skip_cleanup: true
   access_key_id: GOOG1E434S5A3THMZ7WC5II37TBOS6B6R35AC4KH6CG5DPXP6Z3XGG6IZRYCY
   secret_access_key:
     secure: toFQehVPmNJ7BIF4Xj+482Jx0+FffITucziKATK+kWm8ICRZpVMjjWQ3vMDKFc5ncZIY5Kb4YMh/gvjHLn8L68myaqXqbgW9XoYoqkqMGmgM+IyPiHnJPx84Y2pwYp5+tghq/FpYJHptK+23onh2e3dJsFg1S8j9tIGdA8nmoxzyza194HU7j5v7csEBUYy6JFtIu5cbsZXvOc7lsj2PoyIs7b/8hj+Qq34bLf6fqcQmSdtDpMowDN99KHT71nbVkWuV8PkpDi86heP7e4aKYnbxn6yX67AY4vdLa6dYkaU0fboWxJjCT8nTiHI3VbZuwXmqys/P5Q0netHVmUiXVw4D3MKuiKhTwK1uIfKL1aJXsbZLjjKDQYFnu59I7b/ElplJOOU6eqlOH+N9FMHqFZtWqV9vk5aK6rRPz1KimyHOVp6ENHI3F6FN4caYYbntG673Gb6lFw1pQy0Xyr3DGpQ+8ykhliO1pAZkFSf+JIh97XEcdU9DLfgJuG7WlvH6iy6zc0c8NkKt+OYo9hKczbPVg4Yu73C/6Nh/YsFACwadbTBubng5zBD7yQsL472aTmXuaBLJ/4RgfZQL+/4IdLU5k/GaaQLo1VCzLf0SY0koXc6KRTnur8FFZS7jZ/NkMcgYPXQ/Q0KYIIfVU/MDIDzcMg39yvczu96vRqlvBIg=
     bucket: yiws-io-archive
-    local-dir: build
+    local-dir: build/web
     on:
       repo: yiwensong/yiws_io
