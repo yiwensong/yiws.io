@@ -10,7 +10,7 @@ script:
   - flutter doctor --verbose
   - flutter test
   - flutter build web
-after_script:
+  - mkdir -p build/yiws_io_archive
   - export GIT_SHA=$(git log --pretty="%H" -1)
   - echo ${GIT_SHA} > build/web/VERSION
   - tar --gzip --create --file=build/yiws_io_archive/${GIT_SHA}.tar.gz build/web
