@@ -10,15 +10,30 @@ script:
   - flutter doctor --verbose
   - flutter test
   - flutter build web
+after_script:
+  - export GIT_SHA=$(git log --pretty="%H" -1)
+  - echo ${GIT_SHA} > build/web/VERSION
+  - tar --gzip --create --file=build/yiws_io_archive/${GIT_SHA}.tar.gz build/web
 deploy:
-  provider: gcs
-  cleanup: false
-  edge: true
-  bucket: 'yiws-io-archive'
-  acl: public-read
-  local-dir: build/web
-  access_key_id: GOOG1EBKQ2DIPTQYJSQBZPSTD3OGWIYZQPAGJPWVH42GPE5AIOVQUNQ4Q5TCI
-  secret_access_key:
-    secure: tjlfoUwxcembQKtWmQme9oT7zEeYhVPM5zPSYVQl+kjA6kYpgJ4EpPk8yvbfY9n2kZU1XU4YnSmoVDEmVH/8o498qGSH4m/3c5NT7m4PMUEvNq1GP5XQ45d7XK1iY6swFt+0AurIJXFHjBrBBw25HqzcxCwbldQXyvw0zMZufdkzej6YihNABTKIoHpqWSNma4X1K0OQDe9aa8G+FIfUfvkqt1GIMQAUnYPewQ3ha72DiDt9vJX3PyPvLVJP43qpbkkPWtI0ycSIDb/mj3404fPJFOtBa3iGYAoICDl/JQQj61G3KtNe4YRNUkYfe7Jc+64Ylyjri6+qa3HkK166yqiD4FYMRIsVLUlxRNQQjCWNa+GXz75NPV5XiZ//0kVkDawYB8gxF+bSONNBUrB3iEDUYrce+NEeNcrPNeqKC+zoB/RybYqf135oaIux4p6Tuaz5EEt9fW7L0Ud6TpUfOkVi/oB+xYySR2s/Pj4fr1J3KpESMwUSxszrsTs7dRVkFRwjbEU7vPzrZNHYKixSPszN0j7Hae0uR/O+eT9QG9QhS4ReaLBLOdlDcL96ny5QeZ4OzklWe+xOpu8PKSsWb8umzVYwxVn8wjxxLGKRDjOBll6hdAbkf26Odl9ZN3F6vueWa4YNy9g5vSb+FFoiqNJsnfJtUmPYCdHxRxpfAlw=
-  on:
-    repo: yiwensong/yiws_io
+  - provider: gcs
+    cleanup: false
+    edge: true
+    bucket: 'yiws-io-archive'
+    acl: private
+    local-dir: build/yiws_io_archive
+    access_key_id: GOOG1EBKQ2DIPTQYJSQBZPSTD3OGWIYZQPAGJPWVH42GPE5AIOVQUNQ4Q5TCI
+    secret_access_key:
+      secure: tjlfoUwxcembQKtWmQme9oT7zEeYhVPM5zPSYVQl+kjA6kYpgJ4EpPk8yvbfY9n2kZU1XU4YnSmoVDEmVH/8o498qGSH4m/3c5NT7m4PMUEvNq1GP5XQ45d7XK1iY6swFt+0AurIJXFHjBrBBw25HqzcxCwbldQXyvw0zMZufdkzej6YihNABTKIoHpqWSNma4X1K0OQDe9aa8G+FIfUfvkqt1GIMQAUnYPewQ3ha72DiDt9vJX3PyPvLVJP43qpbkkPWtI0ycSIDb/mj3404fPJFOtBa3iGYAoICDl/JQQj61G3KtNe4YRNUkYfe7Jc+64Ylyjri6+qa3HkK166yqiD4FYMRIsVLUlxRNQQjCWNa+GXz75NPV5XiZ//0kVkDawYB8gxF+bSONNBUrB3iEDUYrce+NEeNcrPNeqKC+zoB/RybYqf135oaIux4p6Tuaz5EEt9fW7L0Ud6TpUfOkVi/oB+xYySR2s/Pj4fr1J3KpESMwUSxszrsTs7dRVkFRwjbEU7vPzrZNHYKixSPszN0j7Hae0uR/O+eT9QG9QhS4ReaLBLOdlDcL96ny5QeZ4OzklWe+xOpu8PKSsWb8umzVYwxVn8wjxxLGKRDjOBll6hdAbkf26Odl9ZN3F6vueWa4YNy9g5vSb+FFoiqNJsnfJtUmPYCdHxRxpfAlw=
+    on:
+      repo: yiwensong/yiws_io
+  - provider: gcs
+    cleanup: false
+    edge: true
+    bucket: 'yiws.io'
+    acl: public-read
+    local-dir: build/web
+    access_key_id: GOOG1EBKQ2DIPTQYJSQBZPSTD3OGWIYZQPAGJPWVH42GPE5AIOVQUNQ4Q5TCI
+    secret_access_key:
+      secure: tjlfoUwxcembQKtWmQme9oT7zEeYhVPM5zPSYVQl+kjA6kYpgJ4EpPk8yvbfY9n2kZU1XU4YnSmoVDEmVH/8o498qGSH4m/3c5NT7m4PMUEvNq1GP5XQ45d7XK1iY6swFt+0AurIJXFHjBrBBw25HqzcxCwbldQXyvw0zMZufdkzej6YihNABTKIoHpqWSNma4X1K0OQDe9aa8G+FIfUfvkqt1GIMQAUnYPewQ3ha72DiDt9vJX3PyPvLVJP43qpbkkPWtI0ycSIDb/mj3404fPJFOtBa3iGYAoICDl/JQQj61G3KtNe4YRNUkYfe7Jc+64Ylyjri6+qa3HkK166yqiD4FYMRIsVLUlxRNQQjCWNa+GXz75NPV5XiZ//0kVkDawYB8gxF+bSONNBUrB3iEDUYrce+NEeNcrPNeqKC+zoB/RybYqf135oaIux4p6Tuaz5EEt9fW7L0Ud6TpUfOkVi/oB+xYySR2s/Pj4fr1J3KpESMwUSxszrsTs7dRVkFRwjbEU7vPzrZNHYKixSPszN0j7Hae0uR/O+eT9QG9QhS4ReaLBLOdlDcL96ny5QeZ4OzklWe+xOpu8PKSsWb8umzVYwxVn8wjxxLGKRDjOBll6hdAbkf26Odl9ZN3F6vueWa4YNy9g5vSb+FFoiqNJsnfJtUmPYCdHxRxpfAlw=
+    on:
+      repo: yiwensong/yiws_io
