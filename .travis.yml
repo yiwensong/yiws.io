@@ -28,7 +28,7 @@ deploy:
       repo: yiwensong/yiws_io
   - provider: gcs
     cleanup: false
-    edge: true
+    edge:
       branch: master
     bucket: 'yiws.io'
     acl: public-read
