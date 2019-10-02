@@ -29,6 +29,7 @@ deploy:
   - provider: gcs
     cleanup: false
     edge: true
+      branch: master
     bucket: 'yiws.io'
     acl: public-read
     local-dir: build/web
