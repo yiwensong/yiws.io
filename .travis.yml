@@ -27,7 +27,8 @@ deploy:
     on:
       repo: yiwensong/yiws_io
   - provider: gcs
-    skip_cleanup: true
+    cleanup: false
+    edge: true
     bucket: 'yiws.io'
     acl: public-read
     local-dir: build/web
