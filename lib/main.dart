@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'pages/about.dart';
 import 'pages/index.dart';
 
 void main() => runApp(YioApp());
@@ -9,14 +11,14 @@ class YioApp extends StatelessWidget {
     return MaterialApp(
       title: 'yiws.io',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) {
-          return YioIndexPage(title: 'yiws.io');
+          return YioIndexPage();
         },
         '/about': (BuildContext context) {
-          return YioIndexPage(title: 'About');
+          return YioAboutPage();
         },
       },
     );
