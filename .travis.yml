@@ -3,7 +3,7 @@ language: python
 python:
   - 3.6
 before_script:
-  - git clone https://github.com/flutter/flutter.git --branch master --depth 1
+  - git clone https://github.com/flutter/flutter.git --branch master
   - export PATH=$(pwd)/flutter/bin:$(pwd)/flutter/bin/cache/dart-sdk/bin:$PATH
 script:
   - flutter config --enable-web
