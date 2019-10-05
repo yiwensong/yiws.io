@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../components/drawer.dart';
-import '../util/boxSize.dart';
+
+import '../components/YioDrawer.dart';
+import '../components/PictureTextBox.dart';
 
 class YioAboutPage extends StatelessWidget {
   @override
@@ -9,22 +10,7 @@ class YioAboutPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('About'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FractionallySizedBox(
-              child: Card(
-                child: Container(
-                  child: Text(aboutText),
-                  padding: const EdgeInsets.all(24.0),
-                ),
-              ),
-              widthFactor: getComponentWidth(MediaQuery.of(context).size.width),
-            ),
-          ],
-        ),
-      ),
+      body: PictureTextBox(text: aboutText),
       drawer: YioDrawer(),
     );
   }
